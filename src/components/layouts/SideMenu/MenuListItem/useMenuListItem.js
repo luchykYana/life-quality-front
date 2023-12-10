@@ -1,34 +1,42 @@
 import {Person, Group, FormatListBulleted, CalendarToday, Forum, Compare, BarChart} from '@mui/icons-material';
+import {styles} from './styles';
 
 const useMenuListItem = () => {
     const items = [
         {
-            icon: <Person fontSize="large"/>,
-            text: 'Profile'
+            icon: <Person sx={styles.menuItemIconSize}/>,
+            text: 'Profile',
+            path: '/profile'
         },
         {
-            icon: <Group fontSize="large"/>,
-            text: 'Patients'
+            icon: <Group sx={styles.menuItemIconSize}/>,
+            text: 'Patients',
+            path: '/patients'
         },
         {
-            icon: <FormatListBulleted fontSize="large"/>,
-            text: 'Treatment plan'
+            icon: <FormatListBulleted sx={styles.menuItemIconSize}/>,
+            text: 'Treatment plan',
+            path: '/treatment-plan'
         },
         {
-            icon: <CalendarToday fontSize="large"/>,
-            text: 'Schedule'
+            icon: <CalendarToday sx={styles.menuItemIconSize}/>,
+            text: 'Schedule',
+            path: '/schedule'
         },
         {
-            icon: <Forum fontSize="large"/>,
-            text: 'Surveys'
+            icon: <Forum sx={styles.menuItemIconSize}/>,
+            text: 'Surveys',
+            path: '/surveys'
         },
         {
-            icon: <Compare fontSize="large"/>,
-            text: 'Comparison'
+            icon: <Compare sx={styles.menuItemIconSize}/>,
+            text: 'Comparison',
+            path: '/comparison'
         },
         {
-            icon: <BarChart fontSize="large"/>,
-            text: 'Statistics'
+            icon: <BarChart sx={styles.menuItemIconSize}/>,
+            text: 'Statistics',
+            path: '/statistics'
         }
     ]
 

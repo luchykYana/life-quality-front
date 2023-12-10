@@ -11,8 +11,10 @@ const Layout = () => {
     return (
         <div>
             <Header/>
-            <div style={styles.content}><Outlet/></div>
-            {/*<SideMenu/>*/}
+            <div style={styles.content}>
+                {pathname !== '/' && <SideMenu/>}
+                <div style={styles.outlet}><Outlet/></div>
+            </div>
             {pathname !== '/' && <Footer/>}
             <ToastContainer />
         </div>

@@ -1,7 +1,7 @@
 export const styles = {
     menu: {
-        width: '350px',
-        border: '1px solid red',
+        width: '300px',
+        border: '1px solid #1B295E',
         fontSize: '40px'
     }
 }
