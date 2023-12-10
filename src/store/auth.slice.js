@@ -42,14 +42,18 @@ const authSlice = createSlice({
         },
         doctorInfo: (state, action) => {
             state.doctor = action.payload;
+        },
+        setUserIdZero: (state, _) => {
+            state.idUser = 0;
+            localStorage.setItem('idUser', '0');
         }
     }
 })
 
 const authReducer = authSlice.reducer;
 
-const {login, doctorInfo} = authSlice.actions;
+const {login, doctorInfo, setUserIdZero} = authSlice.actions;
 
 export default authReducer;
 
-export const authActions = {login, doctorInfo};
+export const authActions = {login, doctorInfo, setUserIdZero};
