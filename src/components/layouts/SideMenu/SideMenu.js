@@ -8,7 +8,7 @@ const SideMenu = () => {
     return (
         <Paper sx={styles.menu}>
             <MenuList>
-                {items && items.map(({icon, text}) => <MenuListItem icon={icon} text={text}/>)}
+                {items && items.map(({icon, text, path}) => <MenuListItem icon={icon} text={text} path={path}/>)}
             </MenuList>
         </Paper>
     );
