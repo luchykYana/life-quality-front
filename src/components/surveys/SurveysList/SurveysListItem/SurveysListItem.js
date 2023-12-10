@@ -2,7 +2,7 @@ import {Accordion, AccordionDetails, AccordionSummary, IconButton, Typography} f
 import {Ballot, Bookmark, BookmarkBorder, ExpandMore} from '@mui/icons-material';
 import {styles} from './styles';
 import {useDispatch} from 'react-redux';
-import {changeIsSavedThunk, getResultDetailsThunk} from '../../../../store/survey.slice';
+import {changeIsSavedThunk, getResultAllInfoThunk, getResultDetailsThunk} from '../../../../store/survey.slice';
 import {useCallback} from 'react';
 import {useNavigate} from 'react-router-dom';
 
@@ -20,8 +20,9 @@ const SurveysListItem = ({result}) => {
     }, [dispatch, result?.resultsId])
 
     const more = useCallback(() => {
+        dispatch(getResultAllInfoThunk(result?.resultsId));
         navigate(`/surveys/${result?.resultsId}`, {replace: true});
-    }, [navigate, result?.resultsId])
+    }, [dispatch, navigate, result?.resultsId])
 
     return (
         <Accordion style={styles.accordion} onChange={toggleOpen}>
