@@ -7,7 +7,12 @@ const initialState = {
     surveys: [],
     filters: {},
     diseases: null,
-    questionnaires: null
+    questionnaires: null,
+    questionnaireSavedResults: null,
+    chosenQuestionnaire: '',
+    patientsSavedResults: null,
+    chosenPatient: '',
+    savedResults: null
 }
 
 export const getResultsByFilterThunk = createAsyncThunk(
@@ -70,6 +75,44 @@ export const getAllQuestionnaireThunk = createAsyncThunk(
     }
 )
 
+export const getAllSavedResultsThunk = createAsyncThunk(
+    'savedResults/doctorId',
+    async (id = {}, {dispatch}) => {
+        const doctorId = localStorage.getItem('idUser');
+        await surveyService.getAllSavedResults(doctorId).then((data) => {
+            dispatch(saveQuestionnaireSavedResults(data[0]))
+        }).catch((reason) => {
+            toast(reason.response.data.outcomeMessage, {type: 'error', position: 'bottom-right'});
+        });
+    }
+)
+
+export const getAllSavedResultsByQuestionnaireNameThunk = createAsyncThunk(
+    'savedResults/questionnaireName',
+    async (qName, {dispatch}) => {
+        const doctorId = localStorage.getItem('idUser');
+        await surveyService.getAllSavedResultsByQuestionnaireName(doctorId, qName).then((data) => {
+            dispatch(savePatientsSavedResults(data[0]));
+            dispatch(saveChosenQuestionnaireSavedResults(qName));
+        }).catch((reason) => {
+            toast(reason.response.data.outcomeMessage, {type: 'error', position: 'bottom-right'});
+        });
+    }
+)
+
+export const getAllSavedResultsByQuestionnaireNameAndPatientName = createAsyncThunk(
+    'savedResults/patientName',
+    async ({qName, pName} = {}, {dispatch}) => {
+        const doctorId = localStorage.getItem('idUser');
+        await surveyService.getAllSavedResultsByQuestionnaireNameAndPatientName(doctorId, qName, pName).then((data) => {
+            dispatch(saveSavedResults(data))
+            dispatch(saveChosenPatient(pName))
+        }).catch((reason) => {
+            toast(reason.response.data.outcomeMessage, {type: 'error', position: 'bottom-right'});
+        });
+    }
+)
+
 const surveySlice = createSlice({
     name: 'surveySlice',
     initialState,
@@ -91,14 +134,51 @@ const surveySlice = createSlice({
         },
         getAllQuestionnaire: (state, action) => {
             state.questionnaires = action.payload.map((item) => item.questionnaireName);
+        },
+        saveQuestionnaireSavedResults: (state, action) => {
+            state.questionnaireSavedResults = action.payload;
+        },
+        savePatientsSavedResults: (state, action) => {
+            state.patientsSavedResults = action.payload;
+        },
+        saveChosenQuestionnaireSavedResults: (state, action) => {
+            state.chosenQuestionnaire = action.payload;
+        },
+        saveChosenPatient: (state, action) => {
+            state.chosenPatient = action.payload;
+        },
+        saveSavedResults: (state, action) => {
+            state.savedResults = action.payload;
         }
     }
 })
 
 const surveyReducer = surveySlice.reducer;
 
-const {getByFilter, updateSave, updateDetails, getAllDisease, getAllQuestionnaire} = surveySlice.actions;
+const {
+    getByFilter,
+    updateSave,
+    updateDetails,
+    getAllDisease,
+    getAllQuestionnaire,
+    saveQuestionnaireSavedResults,
+    savePatientsSavedResults,
+    saveChosenQuestionnaireSavedResults,
+    saveChosenPatient,
+    saveSavedResults
+} = surveySlice.actions;
 
 export default surveyReducer;
 
-export const surveyActions = {getByFilter, updateSave, updateDetails, getAllDisease, getAllQuestionnaire};
+export const surveyActions = {
+    getByFilter,
+    updateSave,
+    updateDetails,
+    getAllDisease,
+    getAllQuestionnaire,
+    saveQuestionnaireSavedResults,
+    savePatientsSavedResults,
+    saveChosenQuestionnaireSavedResults,
+    saveChosenPatient,
+    saveSavedResults
+};
