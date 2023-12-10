@@ -12,7 +12,8 @@ const initialState = {
     chosenQuestionnaire: '',
     patientsSavedResults: null,
     chosenPatient: '',
-    savedResults: null
+    savedResults: null,
+    allInfo: null
 }
 
 export const getResultsByFilterThunk = createAsyncThunk(
@@ -41,6 +42,18 @@ export const changeIsSavedThunk = createAsyncThunk(
         });
     }
 )
+
+export const getResultAllInfoThunk = createAsyncThunk(
+    'surveys/allInfo',
+    async (id = {}, {dispatch}) => {
+        await surveyService.getResultAllInfo(id).then((data) => {
+            dispatch(setAllDetails(data))
+        }).catch((reason) => {
+            toast(reason.response.data.outcomeMessage, {type: 'error', position: 'bottom-right'});
+        });
+    }
+)
+
 
 export const getResultDetailsThunk = createAsyncThunk(
     'surveys/details',
@@ -129,6 +142,9 @@ const surveySlice = createSlice({
             state.surveys[index].details = action.payload.data;
             localStorage.setItem('surveys', JSON.stringify(state.surveys));
         },
+        setAllDetails: (state, action) => {
+            state.allInfo = action.payload;
+        },
         getAllDisease: (state, action) => {
             state.diseases = action.payload.map((item) => item.diseaseName);
         },
@@ -165,7 +181,8 @@ const {
     savePatientsSavedResults,
     saveChosenQuestionnaireSavedResults,
     saveChosenPatient,
-    saveSavedResults
+    saveSavedResults,
+    setAllDetails
 } = surveySlice.actions;
 
 export default surveyReducer;
@@ -180,5 +197,6 @@ export const surveyActions = {
     savePatientsSavedResults,
     saveChosenQuestionnaireSavedResults,
     saveChosenPatient,
-    saveSavedResults
+    saveSavedResults,
+    setAllDetails
 };
