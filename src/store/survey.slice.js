@@ -63,7 +63,6 @@ export const getAllQuestionnaireThunk = createAsyncThunk(
     'questionnaires/all',
     async (id = {}, {dispatch}) => {
         await surveyService.getAllQuestionnaire().then((data) => {
-            console.log(data);
             dispatch(getAllQuestionnaire(data))
         }).catch((reason) => {
             toast(reason.response.data.outcomeMessage, {type: 'error', position: 'bottom-right'});
