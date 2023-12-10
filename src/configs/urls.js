@@ -7,5 +7,6 @@ export const URL = {
     save: 'toggle-saved',
     result: 'ResultConclusion',
     diseases: 'Disease',
-    questionnaire: 'Questionnaire'
+    questionnaire: 'Questionnaire',
+    savedResults: 'saved-results'
 }

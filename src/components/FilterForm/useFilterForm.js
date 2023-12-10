@@ -49,11 +49,17 @@ const useFilterForm = () => {
     };
 
     const handleChangeStartDate = (event) => {
-        setStartDate(new Date(event).toISOString());
+        const date = new Date(event)
+        if(date != 'Invalid Date') {
+            setStartDate(new Date(event).toISOString());
+        }
     };
 
     const handleChangeEndDate = (event) => {
-        setEndDate(new Date(event).toISOString());
+        const date = new Date(event)
+        if(date != 'Invalid Date') {
+            setEndDate(new Date(event).toISOString());
+        }
     };
 
     return {
