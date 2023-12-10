@@ -10,7 +10,8 @@ export const styles = {
         alignItems: 'center',
         color: '#21407E',
         fontSize: '25px',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        zIndex: 10
     },
     logo: {
         width: 'fit-content',

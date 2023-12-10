@@ -2,6 +2,7 @@ import {Route, Routes} from 'react-router-dom';
 
 import {ComparisonPage, LoginPage, ProfilePage, SurveysPage} from './pages';
 import {Layout} from './components/layouts';
+import ResultsPage from './pages/ResultsPage';
 
 const App = () => {
     return (
@@ -11,6 +12,7 @@ const App = () => {
                 <Route path={'profile'} element={<ProfilePage />}/>
                 <Route path={'surveys'} element={<SurveysPage />}/>
                 <Route path={'comparison'} element={<ComparisonPage/>}/>
+                <Route path={'surveys/:id'} element={<ResultsPage />}/>
             </Route>
         </Routes>
     );

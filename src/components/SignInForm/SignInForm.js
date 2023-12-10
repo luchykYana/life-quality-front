@@ -7,9 +7,10 @@ import {joiResolver} from '@hookform/resolvers/joi';
 import {LoginValidator} from '../../validators/login.validator';
 import {loginThunk} from '../../store';
 import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 const SignInForm = () => {
+    const { pathname } = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const {idUser} = useSelector((store => store.authReducer));
@@ -23,8 +24,10 @@ const SignInForm = () => {
     }
 
     useEffect(() => {
-        localStorage.setItem('idUser', '0');
-    }, [])
+        if(pathname === '/') {
+            localStorage.setItem('idUser', '0');
+        }
+    }, [pathname])
 
     useEffect(() => {
         if(idUser) {
