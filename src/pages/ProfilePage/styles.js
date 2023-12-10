@@ -1,6 +1,6 @@
 export const styles = {
     content: {
-        width: '85%',
+        width: '90%',
         margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',

@@ -13,7 +13,7 @@ const Layout = () => {
             <Header/>
             <div style={styles.content}>
                 {pathname !== '/' && <SideMenu/>}
-                <div style={styles.outlet}><Outlet/></div>
+                <div style={{...styles.outlet, marginLeft: pathname !== '/' ? '300px' : '0'}}><Outlet/></div>
             </div>
             {pathname !== '/' && <Footer/>}
             <ToastContainer />
