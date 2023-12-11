@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         border: 1,
         borderStyle: 'solid',
-        height: '450px',
-        width: '750px'
+        height: '300px',
+        width: '550px'
     },
     imageDescription: {
         fontSize: 12,
