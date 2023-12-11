@@ -2,7 +2,6 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
 import {surveyService} from '../services';
 import {toast} from 'react-toastify';
-import savedResults from '../components/comparisons/SavedResults';
 
 const initialState = {
     surveys: [],
@@ -14,7 +13,8 @@ const initialState = {
     patientsSavedResults: null,
     chosenPatient: '',
     savedResults: null,
-    allInfo: null
+    allInfo: null,
+    allPatients: []
 }
 
 export const getResultsByFilterThunk = createAsyncThunk(
@@ -61,6 +61,17 @@ export const getResultDetailsThunk = createAsyncThunk(
     async (id = {}, {dispatch}) => {
         await surveyService.getResultDetails(id).then((data) => {
             dispatch(updateDetails({id, data}))
+        }).catch((reason) => {
+            toast(reason.response.data.outcomeMessage, {type: 'error', position: 'bottom-right'});
+        });
+    }
+)
+
+export const getAllPatientsThunk = createAsyncThunk(
+    'patients/all',
+    async (_, {dispatch}) => {
+        await surveyService.getAllPatients().then((data) => {
+            dispatch(getAllPatients(data))
         }).catch((reason) => {
             toast(reason.response.data.outcomeMessage, {type: 'error', position: 'bottom-right'});
         });
@@ -153,6 +164,10 @@ const surveySlice = createSlice({
         getAllDisease: (state, action) => {
             state.diseases = action.payload.map((item) => item.diseaseName);
         },
+        getAllPatients: (state, action) => {
+            const id = localStorage.getItem('idUser')
+            state.allPatients = action.payload.filter(item => item.doctorId == id);
+        },
         getAllQuestionnaire: (state, action) => {
             state.questionnaires = action.payload.map((item) => item.questionnaireName);
         },
@@ -187,7 +202,8 @@ const {
     saveChosenQuestionnaireSavedResults,
     saveChosenPatient,
     saveSavedResults,
-    setAllDetails
+    setAllDetails,
+    getAllPatients
 } = surveySlice.actions;
 
 export default surveyReducer;
@@ -203,5 +219,6 @@ export const surveyActions = {
     saveChosenQuestionnaireSavedResults,
     saveChosenPatient,
     saveSavedResults,
-    setAllDetails
+    setAllDetails,
+    getAllPatients
 };

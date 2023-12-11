@@ -3,6 +3,7 @@ export const URL = {
     auth: 'Authorization',
     doctor: 'Doctor',
     results: 'Results',
+    patient: 'Patient',
     filter: 'filter',
     save: 'toggle-saved',
     result: 'ResultConclusion',
