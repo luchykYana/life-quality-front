@@ -7,7 +7,6 @@ import {styles} from '../../../../surveys/SurveysList/SurveysListItem/styles';
 import {useNavigate} from 'react-router-dom';
 
 const PatientResult = ({result}) => {
-    console.log(result);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -22,8 +21,8 @@ const PatientResult = ({result}) => {
     return (
         <div style={{
             border: '1px solid #21407E',
-            width: '250px',
-            padding: '20px',
+            width: '230px',
+            padding: '10px',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center'

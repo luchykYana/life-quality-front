@@ -73,6 +73,7 @@ const DiagramSection = ({results}) => {
                 series={[{data: values}]}
                 width={500}
                 height={300}
+                colors={['#E28B36']}
             />
         </div>
     );
