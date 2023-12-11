@@ -68,7 +68,7 @@ const PdfTextReport = ({data}) => {
                 <Text>Date: {new Date(data?.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'numeric', year: 'numeric' })}</Text> 
 
                 {(data.resultsPatientAnswers.map((e, index) => 
-                <View>
+                <View key={index}>
                     <Text>
                     {index + 1}. {e.patientAnswer.questionText}</Text>
                      
