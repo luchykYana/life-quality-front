@@ -2,6 +2,9 @@ import {styles} from '../../../FilterForm/styles';
 import {FormControl, InputLabel, MenuItem, Select} from '@mui/material';
 import {useEffect, useMemo, useState} from 'react';
 import {BarChart} from '@mui/x-charts/BarChart';
+import {PDFDownloadLink} from '@react-pdf/renderer';
+import Button from '@mui/material/Button';
+import {ComparisonPdf} from '../ComparisonPdf';
 
 const DiagramSection = ({results}) => {
     const [parameter, setParameter] = useState('');
@@ -39,7 +42,8 @@ const DiagramSection = ({results}) => {
 
     return (
         <div style={{display: 'flex', marginTop: '100px'}}>
-            {results && <FormControl style={styles.field}>
+            <div style={{display: 'flex', flexDirection: 'column', gap: '100px'}}>
+                {results && <FormControl style={styles.field}>
                 <InputLabel>Parameters</InputLabel>
                 <Select
                     defaultValue={''}
@@ -52,6 +56,18 @@ const DiagramSection = ({results}) => {
                     <MenuItem value={''}>None</MenuItem>
                 </Select>
             </FormControl>}
+                <Button variant={'contained'} style={{height: '40px', background: '#E28B36', marginTop: '28px', width: '80%'}}>
+                    <PDFDownloadLink
+                        document={<ComparisonPdf data={{}}/>}
+                        fileName="ComparisonResults.pdf"
+                        style={{textDecoration: 'none', color: 'white'}}
+                    >
+                        {({blob, url, loading, error}) =>
+                            loading ? 'Loading result...' : 'Download result'
+                        }
+                    </PDFDownloadLink>
+                </Button>
+            </div>
             <BarChart
                 xAxis={[{scaleType: 'band', data: dates}]}
                 series={[{data: values}]}
