@@ -54,7 +54,7 @@ const SurveysListItem = ({result}) => {
             </AccordionSummary>
             <AccordionDetails style={styles.details}>
                 <Typography>
-                    {result?.details ? result?.details : 'The conclusion for this result is:'}
+                    <b>The conclusion for this result is: </b>{result?.details ? result?.details : 'The conclusion for this result is:'}
                 </Typography>
                 <IconButton style={styles.icon} onClick={more}>
                     <Ballot/>

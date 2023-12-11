@@ -10,7 +10,7 @@ const PersonalInformation = ({doctor}) => {
                 <SimpleField text={'Surname'} data={doctor?.lastName}/>
                 <SimpleField text={'Name'} data={doctor?.firstName}/>
                 <SimpleField text={'Middle name'} data={doctor?.middleName}/>
-                {/*<SimpleField text={'Date of birth'} data={doctor.age}/>*/}
+                <SimpleField text={'Date of birth'} data={doctor.birthDate.slice(0, 10)}/>
                 <SimpleField text={'Gender'} data={doctor?.gender}/>
             </div>
         </div>

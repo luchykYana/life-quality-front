@@ -139,7 +139,7 @@ const surveySlice = createSlice({
             state.surveys[index].isSaved = !state.surveys[index].isSaved;
             if(state.savedResults){
                 const index2 = state.savedResults.findIndex((result) => result?.resultsId === action.payload);
-                state.savedResults[index2].isSaved = !state.savedResults[index2].isSaved;
+                state.savedResults.splice(index2, 1)
             }
         },
         updateDetails: (state, action) => {
