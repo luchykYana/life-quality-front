@@ -1,6 +1,6 @@
 import {Typography} from '@mui/material';
 
-const PatientsPage = () => {
+const StatisticsPage = () => {
     return (
         <div>
             <Typography variant={'h4'} fontWeight={'bold'} marginTop={'30px'}>Coming soon!</Typography>
@@ -8,4 +8,4 @@ const PatientsPage = () => {
     );
 };
 
-export default PatientsPage;
+export default StatisticsPage;

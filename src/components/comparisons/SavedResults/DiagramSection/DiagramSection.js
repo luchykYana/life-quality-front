@@ -36,7 +36,7 @@ const DiagramSection = ({results}) => {
     useEffect(() => {
         if(memoizedQuestionValues && memoizedQuestionValues.length > 0) {
             setValues(memoizedQuestionValues)
-            setDates(results.map(item => item.date))
+            setDates(results.map(item => item.date.slice(0, 10)))
         } else {
             setValues([0])
             setDates('')
@@ -88,7 +88,7 @@ const DiagramSection = ({results}) => {
             </FormControl>}
                 <Button variant={'contained'} style={{height: '40px', background: '#E28B36', marginTop: '28px', width: '80%'}}>
                     <PDFDownloadLink
-                        document={<ComparisonPdf data={results} chartData={chartData}/>}
+                        document={<ComparisonPdf data={results ?? []} chartData={chartData ?? []}/>}
                         fileName="ComparisonResults.pdf"
                         style={{textDecoration: 'none', color: 'white'}}
                     >
@@ -103,7 +103,7 @@ const DiagramSection = ({results}) => {
                 series={[{data: values}]}
                 width={500}
                 height={300}
-                colors={['#E28B36']}
+                colors={['#21407E']}
             />
             <div style={{ visibility: 'hidden' }}>
                 <ReactBarChart

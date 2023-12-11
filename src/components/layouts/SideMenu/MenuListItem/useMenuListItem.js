@@ -20,7 +20,7 @@ const useMenuListItem = () => {
         },
         {
             icon: <CalendarToday sx={styles.menuItemIconSize}/>,
-            text: 'Schedule',
+            text: 'SchedulePage',
             path: '/schedule'
         },
         {
