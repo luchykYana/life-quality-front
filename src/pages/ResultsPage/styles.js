@@ -4,7 +4,7 @@ export const styles = {
         display: 'flex',
         flexDirection: 'column',
         gap: '5px',
-        marginTop: '5px'
+        margin: '10px'
     },
     bold : {
         fontWeight: 'bold'
