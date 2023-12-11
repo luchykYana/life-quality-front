@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
 import {surveyService} from '../services';
 import {toast} from 'react-toastify';
+import savedResults from '../components/comparisons/SavedResults';
 
 const initialState = {
     surveys: [],
@@ -136,6 +137,10 @@ const surveySlice = createSlice({
         updateSave: (state, action) => {
             const index = state.surveys.findIndex((result) => result?.resultsId === action.payload);
             state.surveys[index].isSaved = !state.surveys[index].isSaved;
+            if(state.savedResults){
+                const index2 = state.savedResults.findIndex((result) => result?.resultsId === action.payload);
+                state.savedResults[index2].isSaved = !state.savedResults[index2].isSaved;
+            }
         },
         updateDetails: (state, action) => {
             const index = state.surveys.findIndex((result) => result?.resultsId === action.payload.id);

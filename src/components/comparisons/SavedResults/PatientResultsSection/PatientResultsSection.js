@@ -11,7 +11,7 @@ const PatientResultsSection = ({results}) => {
                 <Typography variant={'h5'}
                             fontWeight={'bold'}>{results && results[0].questionnaire['questionnaireName']}</Typography>
             </div>
-            <div style={{display: 'flex', gap: '50px'}}>{results && results.map((item, index) =>
+            <div style={{display: 'flex', gap: '50px'}}>{results && results.map((item, index) => item.isSaved &&
                 <PatientResult result={item} key={index}/>)}</div>
         </div>
     );
