@@ -39,7 +39,7 @@ const ReactBarChart = ({data, field1, field2, setDiagram}) => {
                 }
             },
         });
-    }, [data]);
+    }, [data, field1, field2, setDiagram]);
 
     return <canvas ref={chartRef} className={`mb-5`}/>;
 };

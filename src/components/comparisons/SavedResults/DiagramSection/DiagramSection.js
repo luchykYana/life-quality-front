@@ -108,7 +108,7 @@ const DiagramSection = ({results}) => {
             <div style={{ visibility: 'hidden' }}>
                 <ReactBarChart
                 
-                    data = {results}
+                    data = {values}
                     field1={dates}
                     field2={values}
                     setDiagram={setChartData}
